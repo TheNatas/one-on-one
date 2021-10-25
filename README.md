@@ -1,4 +1,4 @@
-# One On One
+# One On One | A Dice Game
 Jogo de dados desenvolvido durante aula do módulo "JS Browser API" do curso Web FullStack da Let's Code, aprimorado posteriormente por mim.
 
 # Instructions
