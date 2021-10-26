@@ -21,11 +21,14 @@ const player2 = {
 
 const diceElem = document.querySelector('.dice');
 const winnerElem = document.querySelector('.winner');
-const instructions = document.querySelectorAll('.instructions');
+const instructions = document.querySelector('.how-to-play');
+const overlay = document.querySelector('.overlay');
 
 const btnNew = document.querySelector('.btn--new');
+const btnHow = document.querySelector('.btn--how');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const btnCloseInstructions = document.querySelector('.close-instructions');
 
 // GAME CONTROLS
 
@@ -85,9 +88,6 @@ const gameOver = function(winner){
 const newGame = function(){
   diceElem.classList.add('hidden');
   winnerElem.classList.add('hidden');
-  setTimeout(() => {
-    instructions.forEach(instruction => instruction.style.opacity = 0);
-  }, 5000);
 
   currentPlayer = player1;
   player1.totalScore = 0;
@@ -111,6 +111,25 @@ const newGame = function(){
   btnHold.style.cursor = 'pointer';
 };
 
+const displayInstructions = function(){
+  overlay.classList.remove('hidden');
+  instructions.classList.remove('hidden');
+
+  overlay.addEventListener('click', closeInstructions);
+  document.addEventListener('keydown', handleKeyPress);
+};
+
+const closeInstructions = function(){
+  overlay.classList.add('hidden');
+  instructions.classList.add('hidden');
+
+  document.removeEventListener('keydown', handleKeyPress);
+};
+
+const handleKeyPress = function(e){
+  if (e.key === 'Escape') closeInstructions();
+};
+
 // START
 
 newGame();
@@ -118,11 +137,5 @@ btnNew.addEventListener('click', newGame);
 
 // INSTRUCTIONS
 
-btnNew.addEventListener('mouseover', function(){
-  instructions.forEach(instruction => instruction.style.opacity = 0.5);
-});
-btnNew.addEventListener('mouseleave', function(){
-  instructions.forEach(instruction => instruction.style.opacity = 0);
-})
-
-// TODO: ADD A '?' (INSTRUCTIONS) BUTTON TO REVEAL THE INSTRUCTIONS WHEN HOVERED
+btnHow.addEventListener('click', displayInstructions);
+btnCloseInstructions.addEventListener('click', closeInstructions);

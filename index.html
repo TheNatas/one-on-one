@@ -9,7 +9,6 @@
   </head>
   <body>
     <main>
-      <p class="instructions">O primeiro a atingir 100 no total vence!</p>
 
       <section class="player player--1 player--active">
         <h2 class="name" id="name--1">Player 1</h2>
@@ -33,11 +32,17 @@
       <img src="dice-5.png" alt="Playing dice" class="dice" />
       <p class="winner"></p>
       <button class="btn btn--new">🔄 Recomeçar</button>
+      <button class="btn btn--how">❓ Como jogar</button>
       <button class="btn btn--roll">🎲 Jogar dado</button>
       <button class="btn btn--hold">📥 Guardar pontos</button>
 
-      <p class="instructions instruction-bottom">Se cair 1 no dado, a vez será passada!</p>
     </main>
+    <div class="how-to-play hidden">
+      <button class="close-instructions">&times</button>
+      <h1 class="title">❓ Como jogar</h1>
+      <p class="instructions">O jogo é dividido por turnos. Cada jogador poderá jogar o dado e acumular a pontuação atual até que o dado caia em 1. Quando isso acontecer, a vez será passada ao outro jogador e a pontuação atual será zerada. Cada jogador pode guardar os seus pontos atuais, o que passa a vez ao adversário. O primeiro jogador a atingir 100 pontos no total vence.</p>
+    </div>
+    <div class="overlay hidden"></div>
     <script src="script.js"></script>
   </body>
 </html>
