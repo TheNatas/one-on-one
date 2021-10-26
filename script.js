@@ -77,8 +77,8 @@ const holdScore = function(){
 const gameOver = function(winner){
   btnRoll.removeEventListener('click', rollDice);
   btnHold.removeEventListener('click', holdScore);
-  btnRoll.style.cursor = 'not-allowed';
-  btnHold.style.cursor = 'not-allowed';
+  btnRoll.classList.add('not-playing');
+  btnHold.classList.add('not-playing');
 
   winnerElem.textContent = `${winner.name} wins!`;
   winnerElem.classList.remove('hidden');
@@ -103,12 +103,13 @@ const newGame = function(){
   player1.playerElem.classList.remove('player--winner');
   player2.playerElem.classList.remove('player--winner');
   player1.playerElem.classList.add('player--active');
+  player2.playerElem.classList.remove('player--active');
 
   btnRoll.addEventListener('click', rollDice);
   btnHold.addEventListener('click', holdScore);
 
-  btnRoll.style.cursor = 'pointer';
-  btnHold.style.cursor = 'pointer';
+  btnRoll.classList.remove('not-playing');
+  btnHold.classList.remove('not-playing');
 };
 
 const displayInstructions = function(){
@@ -132,8 +133,12 @@ const handleKeyPress = function(e){
 
 // START
 
-newGame();
 btnNew.addEventListener('click', newGame);
+
+btnNew.addEventListener('click', function(){
+  this.classList.remove('initial');
+  btnHow.classList.remove('initial');
+}, {once: true}); // removes the initial display
 
 // INSTRUCTIONS
 
